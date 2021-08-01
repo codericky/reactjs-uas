@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Before onSubmit data not change reactjs</title>
+        <script  src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+        <script  src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+        <script  src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+    <body>
+       <div id="root"></div>
+        <script type="text/babel">
+    const { Component } = React;
+    class App extends Component {
+      
+    constructor(props){
+    super(props);
+    this.state={
+      first:'123',
+      last:'Hendi',
+      jeniskelamin:'Laki-laki',
+      address:'Jl. Satria Sudirman',
+    }
+    this.handleSubmit=this.handleSubmit.bind(this);
+  }
+    
+  handleSubmit(first, last, address, jeniskelamin){
+    this.setState({
+      first,
+      last,
+      address,
+      jeniskelamin,
+    })
+  }
+  render() {
+
+    return (
+      <div className="App">
+       <Form onSubmit={this.handleSubmit} />
+       <Display name={this.state.first} last={this.state.last} address={this.state.address} jeniskelamin={this.state.jeniskelamin}/>
+      </div>
+
+    );
+  }
+}
+
+class Form extends Component {
+  constructor(){
+    super();
+    this.state={
+      first:'',
+      last:'',
+      address:'',
+      jeniskelamin:'',
+    }
+    this.handleChange=this.handleChange.bind(this);
+    this.handleSubmit=this.handleSubmit.bind(this);
+  }
+  
+  handleChange(e){
+      this.setState({
+        [e.target.name]:e.target.value
+      });
+      let nam = event.target.name;
+    let val = event.target.value;
+    if (nam === "first") {
+      if (!Number(val)) {
+        alert("Your age must be a number");
+      }
+    }
+    this.setState({[nam]: val});
+  }
+  
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.onSubmit(this.state.first, this.state.last, this.state.address, this.state.jeniskelamin);
+    this.setState({[nam]: val});
+  }
+
+ 
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div className="row">
+       <input name="first" onChange={this.handleChange}type="text" value={this.state.first} placeholder="NIK"  />
+      </div>
+      <div className="row">
+       <input name="last" onChange={this.handleChange}type="text" value={this.state.last} placeholder="NAMA" />
+      </div>
+      <div className="row">
+       <input name="jeniskelamin" onChange={this.handleChange}type="text" value={this.state.jeniskelamin} placeholder="JENIS KELAMIN" />
+      </div>
+      <div className="row">
+       <input name="address" onChange={this.handleChange}type="text" value={this.state.address} placeholder="ALAMAT ANDA"/>
+      </div>
+      <div className="row">
+       <input  name="submit" type="submit" />
+      </div>
+     </form>
+    );
+  }
+}
+
+const Display=(props)=>{
+    return(
+      <div>
+        <div className="row">
+       NIK :  {props.name}
+        </div>
+        <div className="row">
+       NAMA : {props.last}
+        </div>
+        <div className="row">
+       JENIS KELAMIN : {props.jeniskelamin}
+        </div>
+        <div className="row">
+       ALAMAT : {props.address}
+        </div>
+      </div>
+    )
+
+}
+ReactDOM.render(<App />, document.getElementById("root"));
+        </script>
+    </body>
+</html>

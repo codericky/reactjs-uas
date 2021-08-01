@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>validation form input show with reactjs</title>
+        <script  src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+        <script  src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+        <script  src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+    <body>
+       <div id="root"></div>
+        <script type="text/babel">
+       class Form extends React.Component {
+        constructor(props) {
+        super(props);
+        this.state = { 
+            firstname: "",
+            middlename:"",
+            lastname:"",                 
+     };
+     }
+  myfirstname = (event) => {
+    this.setState({firstname: event.target.value});
+    let nam = event.target.name;
+    let val = event.target.value;
+    if (nam === "firstname") {
+      if (!String(val)) {
+        alert("Your firstname must be a string");
+      }
+    }
+    this.setState({[nam]: val});
+  }
+
+  mymiddlename = (event) => {
+    this.setState({middlename: event.target.value});
+    let nam = event.target.name;
+    let val = event.target.value;
+    if (nam == "middlename") {
+      if (!String(val)) {
+        alert("Your firstname must be a string");
+      }
+    }
+    this.setState({[nam]: val});
+  }
+  mylastname = (event) => {
+    this.setState({lastname: event.target.value});
+    let nam = event.target.name;
+    let val = event.target.value;
+    if (nam == "lastname") {
+      if (!String(val)) {
+        alert("Your firstname must be a string");
+      }
+    }
+    this.setState({[nam]: val});
+  }
+  
+  render() {
+    return (
+      <form>
+      <h1>Hello {this.state.firstname}  {this.state.middlename} {this.state.lastname}</h1>
+      <p>Enter your firstname:</p>
+      <input
+        type='text'
+        onChange={this.myfirstname}
+        name='firstname'
+      />
+      <p>Enter your middlename:</p>
+      <input
+        type='text'
+        onChange={this.mymiddlename}
+        name='middlename'
+      />
+      <p>Enter your lastname:</p>
+      <input
+        type='text'
+        onChange={this.mylastname}
+        name='lastname'
+      />
+      </form>
+    );
+  }
+}
+
+    ReactDOM.render(<Form />, document.getElementById('root'));
+        </script>
+    </body>
+</html>
