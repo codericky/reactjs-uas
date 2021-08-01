@@ -60,10 +60,10 @@ class Form extends Component {
       this.setState({
         [e.target.name]:e.target.value
       });
-      let nam = event.target.name;
-    let val = event.target.value;
-    if (nam === "first") {
-      if (!Number(val)) {
+     let nam = event.target.name;
+     let val = event.target.value;
+     if (nam === "first") {
+     if (!Number(val)) {
         alert("Your age must be a number");
       }
     }
@@ -88,7 +88,13 @@ class Form extends Component {
        <input name="last" onChange={this.handleChange}type="text" value={this.state.last} placeholder="NAMA" />
       </div>
       <div className="row">
-       <input name="jeniskelamin" onChange={this.handleChange}type="text" value={this.state.jeniskelamin} placeholder="JENIS KELAMIN" />
+         <label>
+          Jenis Kelamin :
+          <select value={this.state.jeniskelamin} onChange={this.handleChange} name="jeniskelamin">
+            <option value="laki-laki">Laki-laki</option>
+            <option value="perempuan">Perempuan</option>
+          </select>
+        </label>
       </div>
       <div className="row">
        <input name="address" onChange={this.handleChange}type="text" value={this.state.address} placeholder="ALAMAT ANDA"/>
